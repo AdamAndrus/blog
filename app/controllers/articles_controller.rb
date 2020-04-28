@@ -1,10 +1,8 @@
 class ArticlesController < ApplicationController
-  def index
-      @articles = Article.all
-  end
+  http_basic_authenticate_with name: "Adam", password: "AdamPassword", except: [:index, :show]
 
-  def show
-      @article = Article.find(params[:id])
+  def index
+    @articles = Article.all
   end
 
   def new
@@ -12,7 +10,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-   @article = Article.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   def create
